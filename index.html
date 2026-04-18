@@ -100,7 +100,7 @@
                     <!-- Products will be dynamically loaded here -->
                 </div>
                 <div class="show-more-container">
-                    <button id="show-more-btn" class="show-more-btn">Show More Bikes</button>
+                    <button id="show-more-btn" class="show-more-btn">Show More</button>
                 </div>
             </section>
 
@@ -126,20 +126,30 @@
             </div>
             <section class="products-full">
                 <div class="product-filter-panel">
-                    <label for="stock-filter">Filter by stock:</label>
-                    <select id="stock-filter">
-                        <option value="all">All Products</option>
-                        <option value="in-stock">In Stock</option>
-                        <option value="low-stock">Low Stock (≤ 5)</option>
-                        <option value="out-of-stock">Out of Stock</option>
-                    </select>
+                    <div class="filter-group">
+                        <label for="stock-filter">Filter by stock:</label>
+                        <select id="stock-filter">
+                            <option value="all">All Products</option>
+                            <option value="in-stock">In Stock</option>
+                            <option value="low-stock">Low Stock (≤ 5)</option>
+                            <option value="out-of-stock">Out of Stock</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sort-filter">Sort by price:</label>
+                        <select id="sort-filter">
+                            <option value="none">Default</option>
+                            <option value="price-asc">Low to High</option>
+                            <option value="price-desc">High to Low</option>
+                        </select>
+                    </div>
                 </div>
                 <div id="no-products-message" class="no-products-message" style="display: none;">No products match this filter.</div>
                 <div class="product-grid-full" id="product-grid-full">
                     <!-- Full products will be dynamically loaded here -->
                 </div>
                 <div class="show-more-container">
-                    <button id="show-more-full-btn" class="show-more-btn">Show More Bikes</button>
+                    <button id="show-more-full-btn" class="show-more-btn">Show More</button>
                 </div>
             </section>
         </div>

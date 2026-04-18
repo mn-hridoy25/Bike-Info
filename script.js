@@ -604,9 +604,10 @@ products.forEach(product => {
 });
 
 let currentStockFilter = 'all';
+let currentSortOrder = 'none';
 
 function getFilteredProducts() {
-    return products.filter(product => {
+    let visibleProducts = products.filter(product => {
         switch (currentStockFilter) {
             case 'in-stock':
                 return product.stock > 0;
@@ -618,6 +619,14 @@ function getFilteredProducts() {
                 return true;
         }
     });
+
+    if (currentSortOrder === 'price-asc') {
+        visibleProducts.sort((a, b) => a.price - b.price);
+    } else if (currentSortOrder === 'price-desc') {
+        visibleProducts.sort((a, b) => b.price - a.price);
+    }
+
+    return visibleProducts;
 }
 
 // Cart functionality
@@ -1211,6 +1220,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('stock-filter').addEventListener('change', function(e) {
         currentStockFilter = e.target.value;
+        fullProductsShown = 0;
+        renderFullProducts(fullProductsPerBatch);
+    });
+
+    document.getElementById('sort-filter').addEventListener('change', function(e) {
+        currentSortOrder = e.target.value;
         fullProductsShown = 0;
         renderFullProducts(fullProductsPerBatch);
     });
