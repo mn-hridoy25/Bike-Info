@@ -1167,9 +1167,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Hamburger menu toggle
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
+    const searchToggle = document.getElementById('search-toggle');
+    const searchForm = document.getElementById('search-form');
 
     hamburger.addEventListener('click', function() {
         navMenu.classList.toggle('active');
+        searchForm.classList.remove('visible');
+    });
+
+    searchToggle.addEventListener('click', function() {
+        searchForm.classList.toggle('visible');
+        navMenu.classList.remove('active');
     });
 
     // Cart link click

@@ -84,6 +84,16 @@ nav ul li a:hover {
     margin-left: 1rem;
 }
 
+.search-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    margin-left: auto;
+}
+
 .search-bar input {
     width: 220px;
     padding: 0.65rem 0.9rem;
@@ -331,24 +341,114 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .search-bar {
+    .nav-wrapper {
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .search-toggle {
+        display: block;
+        order: 2;
+        margin-left: auto;
+    }
+
+    .hamburger {
+        display: block;
         order: 3;
+    }
+
+    nav {
+        order: 4;
+    }
+
+    .search-bar {
+        display: none;
+        order: 5;
         width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        padding: 1rem 20px;
         justify-content: center;
-        padding: 0 20px;
+        gap: 0.5rem;
+        z-index: 150;
+        flex-wrap: wrap;
+    }
+
+    .search-bar.visible {
+        display: flex;
     }
 
     .search-bar input {
-        width: 100%;
-        min-width: 0;
+        width: calc(100% - 122px);
+        max-width: 100%;
     }
 
     .search-bar button {
         width: 110px;
     }
 
-    .hamburger {
-        display: block;
+    nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #000;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+    }
+
+    nav ul.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    .hero {
+        min-height: 520px;
+        height: auto;
+    }
+    
+    .slide {
+        position: relative;
+        flex-direction: column-reverse;
+        min-height: auto;
+        align-items: stretch;
+    }
+    
+    .slide-content {
+        flex: 1 1 100%;
+        max-width: 100%;
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(0, 0, 0, 0.75);
+        margin: 0;
+        width: 100%;
+    }
+    
+    .slide-content h1 {
+        font-size: 2rem;
+    }
+    
+    .slide-image {
+        flex: 1 1 100%;
+        min-height: 260px;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
     }
     
     nav ul {
@@ -385,6 +485,7 @@ footer {
         position: relative;
         flex-direction: column-reverse;
         min-height: auto;
+        align-items: stretch;
     }
     
     .slide-content {
@@ -392,6 +493,9 @@ footer {
         max-width: 100%;
         text-align: center;
         padding: 1.5rem;
+        background: rgba(0, 0, 0, 0.75);
+        margin: 0;
+        width: 100%;
     }
     
     .slide-content h1 {
