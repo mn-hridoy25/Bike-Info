@@ -363,7 +363,7 @@ footer {
     }
 
     .search-bar {
-        display: none;
+        display: flex;
         order: 5;
         width: 100%;
         position: absolute;
@@ -371,15 +371,23 @@ footer {
         left: 0;
         right: 0;
         background-color: rgba(0, 0, 0, 0.95);
-        padding: 1rem 20px;
+        padding: 0 20px;
         justify-content: center;
         gap: 0.5rem;
         z-index: 150;
         flex-wrap: wrap;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, opacity 0.35s ease, padding 0.35s ease;
+        pointer-events: none;
     }
 
     .search-bar.visible {
-        display: flex;
+        max-height: 160px;
+        opacity: 1;
+        padding: 1rem 20px;
+        pointer-events: auto;
     }
 
     .search-bar input {
