@@ -873,28 +873,45 @@ function prevSlide() {
     showSlide(currentSlide);
 }
 
-// Auto slide
-let slideInterval = setInterval(nextSlide, 5000);
+// Auto slide - disabled on mobile
+let slideInterval;
+if (window.innerWidth > 768) {
+    slideInterval = setInterval(nextSlide, 5000);
+}
 
 // Event listeners
 prevBtn.addEventListener('click', () => {
-    clearInterval(slideInterval);
+    if (slideInterval) clearInterval(slideInterval);
     prevSlide();
-    slideInterval = setInterval(nextSlide, 5000);
+    if (window.innerWidth > 768) {
+        slideInterval = setInterval(nextSlide, 5000);
+    }
 });
 
 nextBtn.addEventListener('click', () => {
-    clearInterval(slideInterval);
+    if (slideInterval) clearInterval(slideInterval);
     nextSlide();
-    slideInterval = setInterval(nextSlide, 5000);
+    if (window.innerWidth > 768) {
+        slideInterval = setInterval(nextSlide, 5000);
+    }
 });
 
 dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
-        clearInterval(slideInterval);
+        if (slideInterval) clearInterval(slideInterval);
         showSlide(index);
-        slideInterval = setInterval(nextSlide, 5000);
+        if (window.innerWidth > 768) {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
     });
+});
+
+// Handle window resize for auto-sliding
+window.addEventListener('resize', () => {
+    if (slideInterval) clearInterval(slideInterval);
+    if (window.innerWidth > 768) {
+        slideInterval = setInterval(nextSlide, 5000);
+    }
 });
 
 // Cart modal functionality
@@ -1170,14 +1187,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchToggle = document.getElementById('search-toggle');
     const searchForm = document.getElementById('search-form');
 
-    hamburger.addEventListener('click', function() {
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
         navMenu.classList.toggle('active');
         searchForm.classList.remove('visible');
     });
 
-    searchToggle.addEventListener('click', function() {
+    searchToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
         searchForm.classList.toggle('visible');
         navMenu.classList.remove('active');
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!navMenu.contains(e.target) && e.target !== hamburger) {
+            navMenu.classList.remove('active');
+        }
+        if (!searchForm.contains(e.target) && e.target !== searchToggle) {
+            searchForm.classList.remove('visible');
+        }
     });
 
     // Cart link click

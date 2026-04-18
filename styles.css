@@ -135,8 +135,7 @@ nav ul li a:hover {
 /* Hero section */
 .hero {
     position: relative;
-    min-height: 500px;
-    height: 500px;
+    height: 400px;
     overflow: hidden;
     margin-top: 80px; /* Account for fixed navbar */
 }
@@ -166,25 +165,31 @@ nav ul li a:hover {
 }
 
 .slide-content {
-    flex: 1;
-    padding: 2rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1.5rem;
     color: #fff;
-    background: rgba(0, 0, 0, 0.7);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
     max-width: 50%;
-    height: 100%;
-    justify-content: center; 
-    align-items: center;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    z-index: 2;
 }
 
 .slide-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+    margin-top: 0;
 }
 
 .slide-content p {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
 }
 
 .btn {
@@ -202,10 +207,14 @@ nav ul li a:hover {
 }
 
 .slide-image {
-    flex: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-size: cover;
     background-position: center;
-    min-height: 100%;
+    z-index: 1;
 }
 
 .slider-nav {
@@ -425,94 +434,60 @@ footer {
     }
 
     .hero {
-        min-height: 520px;
-        height: auto;
+        min-height: 280px;
+        height: 280px;
+        padding-bottom: 0;
+        margin-top: 80px;
     }
     
     .slide {
         position: relative;
-        flex-direction: column-reverse;
-        min-height: auto;
+        flex-direction: column;
+        height: 280px;
         align-items: stretch;
+        justify-content: flex-end;
     }
     
     .slide-content {
-        flex: 1 1 100%;
-        max-width: 100%;
-        text-align: center;
-        padding: 1.5rem;
-        background: rgba(0, 0, 0, 0.75);
-        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
         width: 100%;
-    }
-    
-    .slide-content h1 {
-        font-size: 2rem;
-    }
-    
-    .slide-image {
-        flex: 1 1 100%;
-        min-height: 260px;
-    }
-    
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    nav ul {
+        max-width: 100%;
+        text-align: left;
+        padding: 0.6rem 0.8rem 0.8rem;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.95));
+        margin: 0;
+        height: auto;
         position: absolute;
-        top: 100%;
+        bottom: 0;
         left: 0;
         right: 0;
-        background-color: #000;
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s;
-    }
-    
-    nav ul.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    nav ul li {
-        margin: 0.5rem 0;
-    }
-    
-    .hero {
-        min-height: 520px;
-        height: auto;
-    }
-    
-    .slide {
-        position: relative;
-        flex-direction: column-reverse;
-        min-height: auto;
-        align-items: stretch;
-    }
-    
-    .slide-content {
-        flex: 1 1 100%;
-        max-width: 100%;
-        text-align: center;
-        padding: 1.5rem;
-        background: rgba(0, 0, 0, 0.75);
-        margin: 0;
-        width: 100%;
+        z-index: 2;
     }
     
     .slide-content h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 0.4rem;
+    }
+    
+    .slide-content p {
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
     }
     
     .slide-image {
-        flex: 1 1 100%;
-        min-height: 260px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        min-height: 280px;
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
     }
     
     .product-grid {
