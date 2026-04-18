@@ -605,6 +605,7 @@ products.forEach(product => {
 
 let currentStockFilter = 'all';
 let currentSortOrder = 'none';
+let currentSearchQuery = '';
 
 function getFilteredProducts() {
     let visibleProducts = products.filter(product => {
@@ -619,6 +620,13 @@ function getFilteredProducts() {
                 return true;
         }
     });
+
+    if (currentSearchQuery.trim() !== '') {
+        const query = currentSearchQuery.trim().toLowerCase();
+        visibleProducts = visibleProducts.filter(product => {
+            return product.name.toLowerCase().includes(query) || product.description.toLowerCase().includes(query);
+        });
+    }
 
     if (currentSortOrder === 'price-asc') {
         visibleProducts.sort((a, b) => a.price - b.price);
@@ -1228,6 +1236,22 @@ document.addEventListener('DOMContentLoaded', function() {
         currentSortOrder = e.target.value;
         fullProductsShown = 0;
         renderFullProducts(fullProductsPerBatch);
+    });
+
+    document.getElementById('search-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        currentSearchQuery = document.getElementById('search-input').value;
+        fullProductsShown = 0;
+        showProductsView();
+        renderFullProducts(fullProductsPerBatch);
+    });
+
+    document.getElementById('search-input').addEventListener('input', function(e) {
+        if (e.target.value.trim() === '') {
+            currentSearchQuery = '';
+            fullProductsShown = 0;
+            renderFullProducts(fullProductsPerBatch);
+        }
     });
 
     // Back to home button
