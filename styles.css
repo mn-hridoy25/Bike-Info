@@ -125,6 +125,7 @@ nav ul li a:hover {
 /* Hero section */
 .hero {
     position: relative;
+    min-height: 500px;
     height: 500px;
     overflow: hidden;
     margin-top: 80px; /* Account for fixed navbar */
@@ -376,16 +377,21 @@ footer {
     }
     
     .hero {
-        height: 400px;
+        min-height: 520px;
+        height: auto;
     }
     
     .slide {
+        position: relative;
         flex-direction: column-reverse;
+        min-height: auto;
     }
     
     .slide-content {
+        flex: 1 1 100%;
         max-width: 100%;
         text-align: center;
+        padding: 1.5rem;
     }
     
     .slide-content h1 {
@@ -393,12 +399,51 @@ footer {
     }
     
     .slide-image {
-        min-height: 200px;
+        flex: 1 1 100%;
+        min-height: 260px;
     }
     
     .product-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.toast-container {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.toast {
+    min-width: 260px;
+    max-width: 360px;
+    padding: 0.95rem 1rem;
+    border-radius: 10px;
+    color: #fff;
+    background: rgba(20, 20, 20, 0.95);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto;
+}
+
+.toast.success {
+    background: #28a745;
+}
+
+.toast.error {
+    background: #e63900;
+}
+
+.toast.hide {
+    opacity: 0;
+    transform: translateY(10px);
 }
 
 /* Modal styles */

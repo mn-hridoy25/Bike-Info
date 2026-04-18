@@ -646,6 +646,21 @@ function updateCartCount() {
     cartCount.textContent = cart.length;
 }
 
+function showToast(message, type = 'default') {
+    const toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    toastContainer.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.add('hide');
+        toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+    }, 3000);
+}
+
 // Add to cart
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
@@ -654,14 +669,14 @@ function addToCart(productId) {
     }
 
     if (product.stock <= 0) {
-        alert('Sorry, this bike is out of stock.');
+        showToast('Sorry, this bike is out of stock.', 'error');
         return;
     }
 
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
-    alert(`${product.name} added to cart!`);
+    showToast(`${product.name} added to cart!`, 'success');
 
     product.stock -= 1;
     refreshCurrentProductsView();
@@ -958,7 +973,7 @@ function validateForm() {
     for (const fieldId of requiredFields) {
         const field = document.getElementById(fieldId);
         if (!field.value.trim()) {
-            alert(`Please fill in the ${field.previousElementSibling.textContent.replace('*', '').trim()} field.`);
+            showToast(`Please fill in the ${field.previousElementSibling.textContent.replace('*', '').trim()} field.`, 'error');
             field.focus();
             return false;
         }
@@ -968,7 +983,7 @@ function validateForm() {
     const email = document.getElementById('email').value;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
+        showToast('Please enter a valid email address.', 'error');
         document.getElementById('email').focus();
         return false;
     }
@@ -976,7 +991,7 @@ function validateForm() {
     // Basic card number validation (16 digits)
     const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
     if (!/^\d{16}$/.test(cardNumber)) {
-        alert('Please enter a valid 16-digit card number.');
+        showToast('Please enter a valid 16-digit card number.', 'error');
         document.getElementById('card-number').focus();
         return false;
     }
@@ -984,7 +999,7 @@ function validateForm() {
     // Basic expiry validation (MM/YY)
     const expiry = document.getElementById('expiry').value;
     if (!/^\d{2}\/\d{2}$/.test(expiry)) {
-        alert('Please enter expiry date in MM/YY format.');
+        showToast('Please enter expiry date in MM/YY format.', 'error');
         document.getElementById('expiry').focus();
         return false;
     }
@@ -992,7 +1007,7 @@ function validateForm() {
     // Basic CVV validation (3 digits)
     const cvv = document.getElementById('cvv').value;
     if (!/^\d{3}$/.test(cvv)) {
-        alert('Please enter a valid 3-digit CVV.');
+        showToast('Please enter a valid 3-digit CVV.', 'error');
         document.getElementById('cvv').focus();
         return false;
     }
@@ -1020,7 +1035,7 @@ function processOrder() {
         checkoutModal.style.display = 'none';
         
         // Show success message
-        alert(`Order placed successfully!\n\nOrder Number: ${orderNumber}\n\nThank you for shopping with Biker Zone. You will receive a confirmation email shortly.`);
+        showToast(`Order placed successfully! Order Number: ${orderNumber}. Thank you for shopping with Biker Zone. You will receive a confirmation email shortly.`, 'success');
         
         // Reset form
         document.getElementById('shipping-form').reset();
@@ -1178,7 +1193,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Checkout button (opens checkout modal)
     document.querySelector('.checkout-btn').addEventListener('click', function() {
         if (cart.length === 0) {
-            alert('Your cart is empty!');
+            showToast('Your cart is empty!', 'error');
             return;
         }
         cartModal.style.display = 'none';
