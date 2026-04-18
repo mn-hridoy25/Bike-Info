@@ -135,7 +135,7 @@ nav ul li a:hover {
 /* Hero section */
 .hero {
     position: relative;
-    height: 400px;
+    height: 500px;
     overflow: hidden;
     margin-top: 80px; /* Account for fixed navbar */
 }
@@ -170,7 +170,7 @@ nav ul li a:hover {
     left: 0;
     padding: 1.5rem;
     color: #fff;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9));
     max-width: 50%;
     width: 50%;
     display: flex;
@@ -219,12 +219,13 @@ nav ul li a:hover {
 
 .slider-nav {
     position: absolute;
-    bottom: 20px;
+    bottom: 140px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
     gap: 1rem;
+    z-index: 3;
 }
 
 .slider-nav button {
@@ -434,8 +435,8 @@ footer {
     }
 
     .hero {
-        min-height: 280px;
-        height: 280px;
+        min-height: 350px;
+        height: 350px;
         padding-bottom: 0;
         margin-top: 80px;
     }
@@ -443,7 +444,7 @@ footer {
     .slide {
         position: relative;
         flex-direction: column;
-        height: 280px;
+        height: 350px;
         align-items: stretch;
         justify-content: flex-end;
     }
@@ -457,7 +458,7 @@ footer {
         max-width: 100%;
         text-align: left;
         padding: 0.6rem 0.8rem 0.8rem;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.95));
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.95));
         margin: 0;
         height: auto;
         position: absolute;
@@ -484,10 +485,36 @@ footer {
         left: 0;
         right: 0;
         bottom: 0;
-        min-height: 280px;
+        min-height: 350px;
         background-size: cover;
         background-position: center;
         z-index: 1;
+    }
+    
+    .slider-nav {
+        position: absolute;
+        bottom: 110px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        z-index: 3;
+    }
+    
+    .slider-nav button {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .dots {
+        gap: 0.4rem;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
     }
     
     .product-grid {
