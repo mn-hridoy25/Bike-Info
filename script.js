@@ -684,7 +684,11 @@ const productsView = document.getElementById('products-view');
 function renderProducts(showCount = productsPerBatch) {
     const productGrid = document.getElementById('product-grid');
 
-    // If this is the first call or we're showing more, append to existing content
+    // Clear when loading from the beginning
+    if (productsShown === 0) {
+        productGrid.innerHTML = '';
+    }
+
     const startIndex = productsShown;
     const endIndex = Math.min(startIndex + showCount, products.length);
 
@@ -701,7 +705,8 @@ function renderProducts(showCount = productsPerBatch) {
                 <h3 class="product-name">${product.name}</h3>
                 <p class="product-price">$${product.price.toFixed(2)}</p>
                 <p class="product-description">${product.description}</p>
-                <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                <p class="product-stock ${product.stock === 0 ? 'out-of-stock' : ''}">${product.stock > 0 ? `In stock: ${product.stock}` : 'Out of stock'}</p>
+                <button class="add-to-cart" onclick="addToCart(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>Add to Cart</button>
             </div>
         `;
 
